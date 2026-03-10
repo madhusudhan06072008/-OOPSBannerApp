@@ -1,29 +1,16 @@
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * OOPSBannerApp
- * UC7 - Store character pattern in a class
+ * UC8 - Use Map for character patterns and render via function
  */
 public class OOPSBannerApp {
 
-    static class CharacterPattern {
-        private char character;
-        private String[] pattern;
+    public static Map<Character, String[]> createPatternMap() {
+        Map<Character, String[]> patternMap = new HashMap<>();
 
-        public CharacterPattern(char character, String[] pattern) {
-            this.character = character;
-            this.pattern = pattern;
-        }
-
-        public char getCharacter() {
-            return character;
-        }
-
-        public String[] getPattern() {
-            return pattern;
-        }
-    }
-
-    public static void main(String[] args) {
-        CharacterPattern oPattern = new CharacterPattern('O', new String[] {
+        patternMap.put('O', new String[] {
             "*****",
             "*   *",
             "*   *",
@@ -33,7 +20,7 @@ public class OOPSBannerApp {
             "*****"
         });
 
-        CharacterPattern pPattern = new CharacterPattern('P', new String[] {
+        patternMap.put('P', new String[] {
             "*****",
             "*   *",
             "*   *",
@@ -43,7 +30,7 @@ public class OOPSBannerApp {
             "*"
         });
 
-        CharacterPattern sPattern = new CharacterPattern('S', new String[] {
+        patternMap.put('S', new String[] {
             "*****",
             "*",
             "*",
@@ -53,18 +40,26 @@ public class OOPSBannerApp {
             "*****"
         });
 
-        CharacterPattern[] word = {
-            oPattern, oPattern, pPattern, sPattern
-        };
+        return patternMap;
+    }
 
+    public static void renderBanner(String word, Map<Character, String[]> patternMap) {
         for (int i = 0; i < 7; i++) {
             StringBuilder line = new StringBuilder();
 
-            for (CharacterPattern cp : word) {
-                line.append(cp.getPattern()[i]).append(" ");
+            for (char ch : word.toCharArray()) {
+                String[] pattern = patternMap.get(ch);
+                if (pattern != null) {
+                    line.append(pattern[i]).append(" ");
+                }
             }
 
             System.out.println(line.toString().trim());
         }
+    }
+
+    public static void main(String[] args) {
+        Map<Character, String[]> patternMap = createPatternMap();
+        renderBanner("OOPS", patternMap);
     }
 }
