@@ -1,10 +1,10 @@
 /**
  * OOPSBannerApp
- * UC4 - Store banner lines in array and print using loop
+ * UC5 - Array declaration and initialization using String.join()
  */
 public class OOPSBannerApp {
     public static void main(String[] args) {
-        String[] banner = {
+        String[] banner = new String[] {
             String.join(" ", "*****", "*****", "*****", "*****"),
             String.join(" ", "*   *", "*   *", "*   *", "*"),
             String.join(" ", "*   *", "*   *", "*   *", "*"),
